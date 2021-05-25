@@ -1,11 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const shortUrl = require('./models/shorlUrl')
+var dotenv = require('dotenv')
+dotenv.config();
 
 const app = express()
 
 //connecting to mongodb
-const dburl = 'mongodb+srv://helpvu:help1234@cluster0.dfauh.mongodb.net/url_shortner?retryWrites=true&w=majority';
+const dburl = process.env.URI;
 mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('DB connected successfully...'))
     .catch((err) => console.log(err));
